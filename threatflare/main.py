@@ -1,1 +1,3 @@
-# Core CLI entry point (Typer App)
+from modules import httpbin
+
+httpbin.check_ip_test()
