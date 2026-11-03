@@ -2,7 +2,6 @@ import requests
 from core import load_config
 
 def check_ip_test():
-    # 1. Change the URL to httpbin's GET endpoint
     url = 'https://httpbin.org/get'
     config = load_config()
     api_key = config["ABUSEIPDB_KEY"]
