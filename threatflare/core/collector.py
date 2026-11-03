@@ -1,0 +1,1 @@
+# Log gathering (finding /var/log files, journald, etc.)

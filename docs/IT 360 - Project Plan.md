@@ -1,4 +1,4 @@
-**FireWatch**
+# ThreatFlare
 
 Tyler Werner, Alex Valentine
 
