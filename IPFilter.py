@@ -1,6 +1,14 @@
 import re
 import csv
 import sys
+from config import *
+import requests
+import json
+
+def APIConfig():
+    config = load_config()
+    ai_key = config["AIAPI_KEY"]
+    return ai_key
 
 def runMode(modeInput):
     if modeInput.lower() == "-local":
@@ -21,10 +29,35 @@ def localSearch(Filepath):
 
     return matches
 
-#def AISearch(Filepath):
+def AISearch(Filepath, ai_key):
+     
+     with open(Filepath,"r") as file: #read txt file and store its contents
+        text = file.read()
+
+        url = 'http://sushi.it.ilstu.edu:8080/api/chat/completions'
+        headers = {
+        'Authorization': f'Bearer {ai_key}',
+        'Content-Type': 'application/json'
+        }
+    
+        data = {
+        "model": "translategemma:latest",
+        "messages": [
+            {
+                "role": "user",
+                "content": f"Analyze this text and return only a list of ip addresses found within separated by commas:\n{text}"
+            }
+            ]
+        }
+
+        response = requests.post(url, headers=headers, json=data)
+    
+        if response.status_code == 200:
+            return response.json()['choices'][0]['message']['content']
+        else:
+            return f"Error: {response.status_code} - {response.text}"
 
 
-#def APIConfig():
 
 def csvout(input):
     #output to .csv file, creating the file if it does not exist
@@ -38,6 +71,7 @@ def csvout(input):
             writer.writerow(input)
 
 def Main(arguments):
+    ai_key = APIConfig()
     searchMode = None
     IPList = None
     if len(arguments) < 2:
@@ -55,8 +89,8 @@ def Main(arguments):
     elif searchMode == "local":
         IPList = localSearch(arguments[1])
     elif searchMode == "ai":
-        print("AI mode is currently unavalable. Please use local search")
-        #IPList = AISearch(arguments[1])
+        response = str((AISearch(arguments[1], ai_key))).replace("\n", "")
+        IPList = response.split(", ")
     else:
         if searchMode != None:
             print("Error: unkown search mode")
