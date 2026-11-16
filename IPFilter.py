@@ -8,7 +8,8 @@ import json
 def APIConfig():
     config = load_config()
     ai_key = config["AIAPI_KEY"]
-    return ai_key
+    api_key = config["ABUSEIPDB_KEY"]
+    return ai_key, api_key
 
 def runMode(modeInput):
     if modeInput.lower() == "-local":
@@ -70,34 +71,3 @@ def csvout(input):
             writer = csv.writer(output)
             writer.writerow(input)
 
-def Main(arguments):
-    ai_key = APIConfig()
-    searchMode = None
-    IPList = None
-    if len(arguments) < 2:
-        print("Error: no file selected")
-    elif len(arguments) > 3:
-        print("Error: unknown arguments")
-    elif len(arguments) == 2:
-        searchMode = "local"
-    elif len(arguments) == 3:
-        searchMode = runMode(arguments[2])
-
-
-    if searchMode == "error":
-        print("Error: unkown search mode")
-    elif searchMode == "local":
-        IPList = localSearch(arguments[1])
-    elif searchMode == "ai":
-        response = str((AISearch(arguments[1], ai_key))).replace("\n", "")
-        IPList = response.split(", ")
-    else:
-        if searchMode != None:
-            print("Error: unkown search mode")
-
-    if IPList != None:
-        csvout(IPList)
-
-
-
-Main(sys.argv)
