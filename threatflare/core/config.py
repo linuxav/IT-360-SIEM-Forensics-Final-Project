@@ -3,6 +3,7 @@ import os
 import configparser
 import getpass
 from pathlib import Path
+from dotenv import load_dotenv
 
 def create_config(config_path: Path) -> configparser.ConfigParser:
     """Prompt the user for their API Key and generate the config.ini"""
@@ -30,6 +31,7 @@ def create_config(config_path: Path) -> configparser.ConfigParser:
     
 def load_config(config_path: str = "config.ini") -> dict:
     """Load config.ini and override with environment variables if available"""
+    load_dotenv()
     config = configparser.ConfigParser()
     path = Path(config_path)
     

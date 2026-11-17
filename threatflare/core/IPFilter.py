@@ -1,7 +1,7 @@
 import re
 import csv
 import sys
-from config import *
+from threatflare.core.config import *
 import requests
 import json
 

@@ -26,7 +26,7 @@ def ipdbCheck(target_ip):
 
     # 3. Make a GET request to the API
     try:
-        response = requests.get(url, headers=headers, params=querystring)
+        response = requests.get(url, headers=headers, params=querystring, timeout=10)
         
         if response.status_code == 200:
             ip_data = response.json()['data']

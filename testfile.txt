@@ -1,0 +1,7 @@
+Nov 16 14:02:11 ubuntu-siem sshd[2411]: Failed password for invalid user admin from 185.220.101.1 port 51422 ssh2
+Nov 16 14:02:14 ubuntu-siem sshd[2411]: Failed password for invalid user root from 185.220.101.1 port 51422 ssh2
+Nov 16 14:05:33 ubuntu-siem systemd[1]: Outbound DNS query verified to 8.8.8.8 on port 53
+Nov 16 14:08:49 ubuntu-siem sshd[2489]: Failed password for root from 45.148.10.240 port 40912 ssh2
+Nov 16 14:11:02 ubuntu-siem kernel: [UFW BLOCK] IN=eth0 OUT= SRC=193.142.146.35 DST=10.0.2.15 PROTO=TCP DPT=22
+Nov 16 14:15:20 ubuntu-siem systemd-timesyncd[512]: Synchronized to time server 1.1.1.1:123
+Nov 16 14:18:04 ubuntu-siem sshd[2510]: Connection closed by authenticating user ubuntu 185.220.101.1 port 58210 [preauth]

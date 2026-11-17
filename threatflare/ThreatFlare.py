@@ -1,7 +1,6 @@
 from threatflare.core.config import load_config
 from threatflare.core.IPFilter import *
 from threatflare.modules.abuseipdb import ipdbCheck
-
 import re
 import csv
 import sys
@@ -53,16 +52,13 @@ def Main(arguments):
         print(f"Scanned {ipCount} IP addresses: \nDetected {maliciousCount} malicious IPs, {ErrorCount} Errors")
         FinalReport = f"Scanned {ipCount} IP addresses: \nDetected {maliciousCount} malicious IPs, {ErrorCount} Errors\n\n{tempReport}"
         try:
-            with open("ReportOutput.txt","x") as output:
-                output.write(FinalReport)
+            with open("ReportOutput.txt","x") as output: #TODO: Use input file name and time to make unique output files
+                output.write(FinalReport) #TODO: Send file to data directory
         except FileExistsError:
             with open("IPFilterOutput.csv","w") as output:
                 output.write(FinalReport)
     else:
         print("No IP Addresses found. No report will be generated.")
 
-
-
-
-
-Main(sys.argv)
+if __name__ == "__main__":
+    Main(sys.argv)
