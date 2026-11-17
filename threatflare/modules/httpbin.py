@@ -1,5 +1,5 @@
 import requests
-from core import load_config
+from threatflare.core.config import load_config
 
 def check_ip_test():
     url = 'https://httpbin.org/get'
