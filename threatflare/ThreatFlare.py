@@ -55,7 +55,7 @@ def Main(arguments):
             with open("ReportOutput.txt","x") as output: #TODO: Use input file name and time to make unique output files
                 output.write(FinalReport) #TODO: Send file to data directory
         except FileExistsError:
-            with open("IPFilterOutput.csv","w") as output:
+            with open("ReportOutput.txt","w") as output:
                 output.write(FinalReport)
     else:
         print("No IP Addresses found. No report will be generated.")
