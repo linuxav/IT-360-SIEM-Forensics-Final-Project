@@ -1,14 +1,15 @@
-from IPFilter import *
+from threatflare.core.IPFilter import *
 import re
 import csv
 import sys
-from config import *
+from threatflare.core.config import *
 import requests
 import json
-from abuseipdb import *
+from threatflare.modules.abuseipdb import *
 
 def Main(arguments):
-    ai_key, api_key = APIConfig()
+    config = load_config()
+    ai_key = config["AIAPI_KEY"]
     searchMode = None
     IPList = None
     maliciousCount = 0
@@ -39,7 +40,7 @@ def Main(arguments):
         ipCount = 0
         for item in IPList:
             ipCount += 1
-            report, control = ipdbCheck(item, api_key)
+            report, control = ipdbCheck(item)
             if control == 1:
                 maliciousCount += 1
                 tempReport = (f"{tempReport}" + f"{report}\n\n")

@@ -5,12 +5,6 @@ from config import *
 import requests
 import json
 
-def APIConfig():
-    config = load_config()
-    ai_key = config["AIAPI_KEY"]
-    api_key = config["ABUSEIPDB_KEY"]
-    return ai_key, api_key
-
 def runMode(modeInput):
     if modeInput.lower() == "-local":
         return "local"
