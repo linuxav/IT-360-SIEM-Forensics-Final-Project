@@ -1,11 +1,12 @@
+from threatflare.core.config import load_config
 from threatflare.core.IPFilter import *
+from threatflare.modules.abuseipdb import ipdbCheck
+
 import re
 import csv
 import sys
-from threatflare.core.config import *
 import requests
 import json
-from threatflare.modules.abuseipdb import *
 
 def Main(arguments):
     config = load_config()
